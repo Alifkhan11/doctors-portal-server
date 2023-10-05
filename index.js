@@ -8,7 +8,14 @@ const stripe = require("stripe")(process.env.STRIPE_SECKRET_KE);
 const app = express();
 
 //middlewere
-app.use(cors());
+
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.m6hhp6r.mongodb.net/?retryWrites=true&w=majority`;
